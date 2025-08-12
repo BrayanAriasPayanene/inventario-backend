@@ -13,7 +13,8 @@ export const obtenerProductos = async (req, res) => {
 
 // Crear un nuevo producto
 export const crearProducto = async (req, res) => {
-  const { nombre, categoria, precio, cantidad, descripcion } = req.body;
+  // Se añade 'imagen_url' a la desestructuración del cuerpo de la petición
+  const { nombre, categoria, precio, cantidad, descripcion, imagen_url } = req.body;
   try {
     const nuevo = await prisma.producto.create({
       data: { 
@@ -21,7 +22,9 @@ export const crearProducto = async (req, res) => {
         categoria, 
         precio: parseFloat(precio),
         cantidad: cantidad ? parseInt(cantidad) : null,
-        descripcion: descripcion || null
+        descripcion: descripcion || null,
+        // ¡Añade esto! Se guarda el valor de imagen_url
+        imagen_url: imagen_url || null
       },
     });
     res.json(nuevo);
@@ -33,7 +36,8 @@ export const crearProducto = async (req, res) => {
 // Actualizar un producto existente
 export const actualizarProducto = async (req, res) => {
   const { id } = req.params;
-  const { nombre, categoria, precio, cantidad, descripcion } = req.body;
+  // Se añade 'imagen_url' a la desestructuración del cuerpo de la petición
+  const { nombre, categoria, precio, cantidad, descripcion, imagen_url } = req.body;
   try {
     const actualizado = await prisma.producto.update({
       where: { id: parseInt(id) },
@@ -42,7 +46,9 @@ export const actualizarProducto = async (req, res) => {
         categoria, 
         precio: parseFloat(precio),
         cantidad: cantidad ? parseInt(cantidad) : null,
-        descripcion: descripcion || null
+        descripcion: descripcion || null,
+        // ¡Añade esto! Se guarda el valor de imagen_url
+        imagen_url: imagen_url || null
       },
     });
     res.json(actualizado);

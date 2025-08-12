@@ -14,5 +14,7 @@ model Producto {
   precio      Float
   cantidad    Int?
   descripcion String?
+  // Nuevo campo para la URL de la imagen
+  imagen_url  String?
   creadoEn    DateTime @default(now())
 }
