@@ -3,7 +3,8 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
-import productoRoutes from './src/routes/productoRoutes.js'; // ✅ Importamos las rutas
+import productoRoutes from './src/routes/productoRoutes.js'; // ✅ Rutas de productos
+import reportesRoutes from './src/routes/reportesRoutes.js'; // ✅ Rutas de reportes
 
 dotenv.config();
 const app = express();
@@ -19,7 +20,8 @@ app.get('/', (req, res) => {
 });
 
 // Rutas principales
-app.use('/api/productos', productoRoutes); // ✅ Aquí se conectan las rutas CRUD de productos
+app.use('/api/productos', productoRoutes); // CRUD de productos
+app.use('/api/reportes', reportesRoutes); // Reportes y KPIs
 
 // Endpoint de prueba
 app.post('/api/saludo', (req, res) => {
